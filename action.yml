@@ -113,6 +113,16 @@ runs:
           sudo swapoff -a
           sudo rm -f /mnt/swapfile
 
+          # Disk space after removal
+          echo "Memory and swap:"
+          free
+          echo
+          swapon --show
+          echo
+          echo "Available storage:"
+          df -h
+          echo
+
           echo "Creating LVM Volume."
           echo "  Creating LVM PV on root fs."
           # create loop pv image on root fs
