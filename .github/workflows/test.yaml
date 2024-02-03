@@ -24,12 +24,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: ./.github/actions/maximize-test
-
-      # - name: Maximize build space
-      #   uses: ./.github/actions/maximize-test
-      #   with:
-      #     build-mount-path: /nix
+      - run: |
+          df -h
+      - name: Maximize build space
+        uses: ./.github/actions/maximize-test
+        with:
+          build-mount-path: /nix
+          build-mount-path-ownership: root:root
       #     build-mount-path-ownership: runner:runner
+      - run: |
+          df -h
       - uses: DeterminateSystems/nix-installer-action@e279ba56d8266c08a0e65738145aabb824f308ed # ratchet:DeterminateSystems/nix-installer-action@main      
       - uses: mxschmitt/action-tmate@a283f9441d2d96eb62436dc46d7014f5d357ac22 # ratchet:mxschmitt/action-tmate@v3
           
